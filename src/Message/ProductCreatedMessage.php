@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Message;
@@ -10,10 +11,9 @@ final readonly class ProductCreatedMessage
         return new self($id, $name);
     }
 
-    private function __construct(
-        private int $id,
-        private string $name
-    ) {}
+    private function __construct(private int $id, private string $name)
+    {
+    }
 
     public function getId(): int
     {

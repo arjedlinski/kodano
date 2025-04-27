@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\MessageHandler;
@@ -12,9 +13,9 @@ use Symfony\Component\Mime\Email;
 #[AsMessageHandler]
 readonly class SendEmailMessageHandler
 {
-    public function __construct(
-        private MailerInterface $mailer
-    ) {}
+    public function __construct(private MailerInterface $mailer)
+    {
+    }
 
     public function __invoke(SendEmailMessage $message): void
     {
@@ -24,7 +25,6 @@ readonly class SendEmailMessageHandler
             ->subject($message->getSubject())
             ->text($message->getText())
             ->html($message->getHtml());
-
         $this->mailer->send($email);
     }
 }

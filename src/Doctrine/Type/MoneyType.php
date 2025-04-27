@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Doctrine\Type;
@@ -10,8 +11,7 @@ use Money\Money;
 
 class MoneyType extends Type
 {
-    const MONEY = 'money';
-
+    public const MONEY = 'money';
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Money
     {
         if ($value === null) {

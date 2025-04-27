@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\EventSubscriber\Doctrine;
@@ -15,10 +16,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 #[AsEntityListener(event: Events::postPersist, method: 'postPersist', entity: Product::class)]
 readonly class ProductSubscriber
 {
-    public function __construct(
-        private MessageBusInterface $messageBus
-    ) {
-
+    public function __construct(private MessageBusInterface $messageBus)
+    {
     }
 
     /**

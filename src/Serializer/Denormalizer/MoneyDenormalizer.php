@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Serializer\Denormalizer;
@@ -25,8 +26,12 @@ class MoneyDenormalizer implements DenormalizerInterface
         return new Money((int) $data['amount'], $currency);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-    {
+    public function supportsDenormalization(
+        mixed $data,
+        string $type,
+        ?string $format = null,
+        array $context = []
+    ): bool {
         return $format === 'jsonld' && Money::class === $type;
     }
 }

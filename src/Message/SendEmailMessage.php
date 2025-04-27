@@ -1,17 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Message;
 
 readonly class SendEmailMessage
 {
-    public static function create(
-        string $from,
-        string $to,
-        string $subject,
-        string $text,
-        string $html,
-    ): self
+    public static function create(string $from, string $to, string $subject, string $text, string $html,): self
     {
         return new self($from, $to, $subject, $text, $html);
     }
@@ -22,8 +17,7 @@ readonly class SendEmailMessage
         private string $subject,
         private string $text,
         private string $html,
-    )
-    {
+    ) {
     }
 
     public function getFrom(): string

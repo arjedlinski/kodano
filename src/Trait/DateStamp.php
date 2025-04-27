@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Trait;
@@ -9,10 +10,8 @@ trait DateStamp
 {
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $updatedAt;
-
     #[ORM\PrePersist]
     public function onCreated(): void
     {
