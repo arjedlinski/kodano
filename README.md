@@ -3,6 +3,10 @@
 ## Instalacja i konfiguracja
 
 Aby uruchomić projekt lokalnie, odpalić setup.sh
+Api jest dostepne na porcie 8001.
+
+http://localhost:8001/api/categories
+http://localhost:8001/api/products
 
 1. Uruchom poniższy skrypt w terminalu:
 
