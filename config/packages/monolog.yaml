@@ -1,0 +1,9 @@
+monolog:
+  channels: ['api', 'app', 'doctrine']
+
+  handlers:
+    api:
+      type: stream
+      path: '%kernel.logs_dir%/api.log'
+      level: info
+      channels: ['api']

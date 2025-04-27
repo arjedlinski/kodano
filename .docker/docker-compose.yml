@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:latest
+        restart: always
+        ports:
+            - 8020:80
+        networks:
+            - kodano
+    db:
+        image: mysql:8.0.33
+        platform: linux/x86_64
+        container_name: db
+        environment:
+            MYSQL_DATABASE: 'kodano'
+            #    We cannot set user as 'root' if mysql is below version of 5.x: https://github.com/docker-library/mysql/issues/129
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'user'
+            MYSQL_ROOT_PASSWORD: 'user'
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./data/conf.d:/etc/mysql/conf.d
+        networks:
+            - kodano
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3-management
+        ports: [ "5672", "15672" ]
+        networks:
+            - kodano
+    php:
+        build:
+            context: ./php
+        volumes:
+            - ../:/var/www/symfony:cached
+            - ../var:/var/www/symfony/var
+            - ../vendor:/var/www/symfony/vendor
+        networks:
+            - kodano
+    nginx:
+        build:
+            context: ./nginx
+        volumes:
+            - ../:/var/www/symfony:cached
+            - ../var:/var/www/symfony/var
+            - ../vendor:/var/www/symfony/vendor
+        ports:
+            - 8001:80
+        networks:
+            - kodano
+
+networks:
+    kodano:
